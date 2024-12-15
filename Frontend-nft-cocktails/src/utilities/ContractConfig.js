@@ -1,3 +1,4 @@
+//src/utilities/ContractConfig.js
 import { ethers } from 'ethers';
 import contractABI from '../ContractAbi.json';
 
@@ -24,24 +25,14 @@ export const connectWallet = async () => {
       const contractWithSigner = contract.connect(signer); 
 
       return {
-        status: 'Connected successfully',
         address: account,
         contract: contractWithSigner,
       };
     } catch (error) {
-      return {
-        status: error.message,
-        address: '',
-        contract: null,
-      };
+      console.log("Error connecting wallet", error);
+      throw error;
     }
-  } else {
-    return {
-      status: 'Please install MetaMask',
-      address: '',
-      contract: null,
-    };
-  }
+  } 
 };
 
 export const getCurrentWalletConnected = async () => {
@@ -58,46 +49,34 @@ export const getCurrentWalletConnected = async () => {
         const contractWithSigner = contract.connect(signer); 
 
         return {
-          status: 'Connected',
           address: accounts[0],
           contract: contractWithSigner,
         };
       }
 
       return {
-        status: 'Please connect wallet',
         address: '',
         contract: null,
       };
     } catch (error) {
+      console.log("Error getting wallet connection:", error);
       return {
-        status: error.message,
         address: '',
         contract: null,
       };
     }
   }
-
-  return {
-    status: 'Please install MetaMask',
-    address: '',
-    contract: null,
-  };
 };
 
-export const walletListener = async (setWalletAddress, setStatus) => {
+export const walletListener = async (setWalletAddress) => {
   if(window.etherum) {
+    // Callback function I need for metamask account change event. 
     window.ethereum.on('accountsChanged', async (accounts) => {
       if (accounts.length > 0) {
-       
         setWalletAddress(accounts[0]);
-        setStatus('Connected');
-        return contractWithSigner;
       } else {
         setWalletAddress('');
-        setStatus('Please connect wallet');
       }
-
     });
   }
 }
