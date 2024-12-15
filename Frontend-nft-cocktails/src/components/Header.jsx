@@ -4,52 +4,64 @@ import '../styles/Header.css';
 
 const Header = () => {
 const [walletAddress, setWalletAddress] = useState("");
-const [status, setStatus] = useState("");
+const [isConnecting, setIsConnecting] = useState(false);
 
 useEffect(() => {
   const initialize = async () => {
     try {
-      const { status, address } = await getCurrentWalletConnected();
+      const { address } = await getCurrentWalletConnected();
       setWalletAddress(address);
-      setStatus(status);
 
       if (address) {
-        walletListener(setWalletAddress, setStatus);
+        walletListener(setWalletAddress);
       }
     } catch (error) {
-      setStatus('Error loading data:', error);
+      console.log("error initializing wallet", error);
     }
   };
   initialize();
 }, []);
 
     const handleConnectWallet = async() => {
-       const connectWalletResponse = await connectWallet();
-      const {status, address} = connectWalletResponse;
-        setStatus(status);
+      if(!window.ethereum) {
+         window.open('https://metamask.io/download/', '_blank');       
+         return;
+      }
+      setIsConnecting(true);
+      const {address} = await connectWallet();
       setWalletAddress(address);
     
     }
 
 
   return (
-      <div className="header">
-        <h1 className="intro">UniqueCocktailNfts</h1>
-        {!walletAddress && (
+    <div className="header">
+      <h1 className="title">UniqueCocktailNfts</h1>
+      <div className="wallet-section">
+        {!window.ethereum ? (
           <button
             className="walletButton"
             onClick={handleConnectWallet}
           >
-            connect wallet
+            Install MetaMask
           </button>
-        )}
-        {walletAddress && ( 
-          <p className='walletAddress'>
-              Connected: {`${walletAddress.substring(0, 6)}...${walletAddress.slice(-4)}`}
+        ) : !walletAddress ? (
+          <button
+            className="walletButton"
+            onClick={handleConnectWallet}
+            disabled={isConnecting}
+          >
+            {isConnecting ? 'Connecting...' : 'Connect Wallet'}
+          </button>
+        ) : (
+          <p className="walletAddress">
+            Connected:{' '}
+            {`${walletAddress.substring(0, 6)}...${walletAddress.slice(-4)}`}
           </p>
         )}
       </div>
-  )
+    </div>
+  );
 }
 
 export default Header
