@@ -1,0 +1,15 @@
+/* 
+src/styles/App.css
+*/
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+   background:linear-gradient(to left top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  
+}
+
+.container {
+  height: 100vh;
+}
+

@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  width: 100%;
+  justify-content:space-between;
+}
+
+.intro {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem;
+    color: rgb(249, 244, 244);
+    font-size: 1.9rem;
+}
+
+.walletButton {
+  background-color: rgb(108, 216, 108);
+  color: white;
+  margin: 2rem;
+  padding: 5px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.walletAddress {
+    margin: 1rem;
+    font-weight: bold;
+    color: white;
+}
