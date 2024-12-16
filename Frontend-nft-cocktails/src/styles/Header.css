@@ -1,10 +1,13 @@
+/* 
+src/styles/Header.css
+*/
 .header {
   display: flex;
   width: 100%;
   justify-content:space-between;
 }
 
-.intro {
+.title {
     font-size: 1.5rem;
     font-weight: bold;
     margin: 1rem;
@@ -14,15 +17,29 @@
 
 .walletButton {
   background-color: rgb(108, 216, 108);
+  border: none;
   color: white;
   margin: 2rem;
-  padding: 5px 7px;
+  padding: 6px 10px;
   border-radius: 6px;
   cursor: pointer;
 }
 
+.walletButton:hover {
+  background-color: rgb(76, 175, 76);
+}
+
 .walletAddress {
     margin: 1rem;
+    background-color: rgb(63, 192, 51);
+    padding: 2px 5px;
+    border-radius: 0.2rem;
     font-weight: bold;
     color: white;
+}
+
+.wallet-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
