@@ -70,7 +70,7 @@ export const getCurrentWalletConnected = async () => {
 
 export const walletListener = async (setWalletAddress) => {
   if(window.etherum) {
-    // Callback function I need for metamask account change event. 
+    // Callback function needed for metamask account change event. 
     window.ethereum.on('accountsChanged', async (accounts) => {
       if (accounts.length > 0) {
         setWalletAddress(accounts[0]);
@@ -81,6 +81,39 @@ export const walletListener = async (setWalletAddress) => {
   }
 }
 
+export const getMintLimit = async (contract, userAddress, cocktailName) => {
+  try{
+      if(!contract || !userAddress) return;
+     return await contract.mintLimitForEachNFT(userAddress, cocktailName);
+  } catch(error) {
+    console.log("Error accessing mint limit");
+    throw new error;
+  }
+}
 
+export const mintedNfts = async (contract) => {
+ try{
+  return await contract.tokenIds(); 
+ }catch(error){
+  console.error("Error trying to access total minted nfts", error);
+  throw error
+ }
+}
 
+ export const mintCocktail = async (contract, cocktailName) => {
+  try {
+    if (!contract) {
+      throw new Error("no contract instance");
+    }
+
+    const tx = await contract.safeMint(await contract.signer.getAddress(), cocktailName);
+    await tx.wait();
+    return tx;
+  } catch (error) {
+    console.error("Could not mint nft", error);
+    throw new Error("Could not mint nft", error);
+  }
+
+};
+ 
 
