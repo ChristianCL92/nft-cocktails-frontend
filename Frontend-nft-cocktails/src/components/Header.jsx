@@ -1,38 +1,9 @@
-import { useState, useEffect } from 'react';
-import { connectWallet, getCurrentWalletConnected, walletListener } from '../utilities/ContractConfig';
+//src/components/Header.jsx
 import '../styles/Header.css';
+import { useWallet } from '../hooks/useWallet';
 
 const Header = () => {
-const [walletAddress, setWalletAddress] = useState("");
-const [isConnecting, setIsConnecting] = useState(false);
-
-useEffect(() => {
-  const initialize = async () => {
-    try {
-      const { address } = await getCurrentWalletConnected();
-      setWalletAddress(address);
-
-      if (address) {
-        walletListener(setWalletAddress);
-      }
-    } catch (error) {
-      console.log("error initializing wallet", error);
-    }
-  };
-  initialize();
-}, []);
-
-    const handleConnectWallet = async() => {
-      if(!window.ethereum) {
-         window.open('https://metamask.io/download/', '_blank');       
-         return;
-      }
-      setIsConnecting(true);
-      const {address} = await connectWallet();
-      setWalletAddress(address);
-    
-    }
-
+const {walletAddress, isConnecting, handleConnectWallet } = useWallet();
 
   return (
     <div className="header">
