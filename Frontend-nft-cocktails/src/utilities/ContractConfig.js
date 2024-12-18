@@ -81,16 +81,6 @@ export const walletListener = async (setWalletAddress) => {
   }
 }
 
-export const getMintLimit = async (contract, userAddress, cocktailName) => {
-  try{
-      if(!contract || !userAddress) return;
-     return await contract.mintLimitForEachNFT(userAddress, cocktailName);
-  } catch(error) {
-    console.log("Error accessing mint limit");
-    throw new error;
-  }
-}
-
 export const mintedNfts = async (contract) => {
  try{
   return await contract.tokenIds(); 
@@ -106,12 +96,15 @@ export const mintedNfts = async (contract) => {
       throw new Error("no contract instance");
     }
 
-    const tx = await contract.safeMint(await contract.signer.getAddress(), cocktailName);
+    console.log("Contract instance", contract);
+
+    const tx = await contract.safeMint(contract.signer.getAddress(), cocktailName);
+    console.log("Transaction initialized", tx);
     await tx.wait();
     return tx;
   } catch (error) {
-    console.error("Could not mint nft", error);
-    throw new Error("Could not mint nft", error);
+    console.error("Could not mint nft", error.message);
+    throw error;
   }
 
 };
