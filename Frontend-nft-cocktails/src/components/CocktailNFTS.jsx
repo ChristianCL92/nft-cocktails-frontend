@@ -8,8 +8,8 @@ const CocktailNFTS = () => {
 
   return (
     <div className='container'>
-    <Header></Header>
-    <CocktailCollection></CocktailCollection>
+    <Header/>
+    <CocktailCollection/>
     </div>
   
   );
