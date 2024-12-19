@@ -1,10 +1,12 @@
-import CocktailNFTS from './components/CocktailNFTS';
-
+import { WalletProvider } from "./context/WalletContext";
+import CocktailNFTS from "./components/CocktailNFTS";
 function App() {
 
   return (
     <>
-      <CocktailNFTS></CocktailNFTS>
+    <WalletProvider>
+      <CocktailNFTS />
+    </WalletProvider>
     </>
   )
 }
