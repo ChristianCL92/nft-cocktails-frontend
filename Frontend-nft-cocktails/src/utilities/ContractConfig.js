@@ -23,9 +23,9 @@ export const connectWallet = async () => {
 
       // Create a new contract instance with the signer
       const contractWithSigner = contract.connect(signer); 
-
+  
       return {
-        address: account,
+        address: account[0],
         contract: contractWithSigner,
       };
     } catch (error) {
@@ -44,7 +44,7 @@ export const getCurrentWalletConnected = async () => {
 
       if (accounts.length > 0) {
         // Create contract instance with signer if account is connected
-         const browserProvider = new ethers.BrowserProvider(window.ethereum);
+        const browserProvider = new ethers.BrowserProvider(window.ethereum);
         const signer = await browserProvider.getSigner();
         const contractWithSigner = contract.connect(signer); 
 
@@ -69,7 +69,7 @@ export const getCurrentWalletConnected = async () => {
 };
 
 export const walletListener = async (setWalletAddress) => {
-  if(window.etherum) {
+  if(window.ethereum) {
     // Callback function needed for metamask account change event. 
     window.ethereum.on('accountsChanged', async (accounts) => {
       if (accounts.length > 0) {
@@ -96,10 +96,16 @@ export const mintedNfts = async (contract) => {
       throw new Error("no contract instance");
     }
 
-    console.log("Contract instance", contract);
+    const signer = await contract.runner;
+    if (!signer) {
+      throw new Error("No signer available");
+    }
+    const address = await signer.getAddress();
+    if (!address) {
+      throw new Error('Could not get signer address');
+    }
 
-    const tx = await contract.safeMint(contract.signer.getAddress(), cocktailName);
-    console.log("Transaction initialized", tx);
+    const tx = await contract.safeMint(address, cocktailName);
     await tx.wait();
     return tx;
   } catch (error) {
