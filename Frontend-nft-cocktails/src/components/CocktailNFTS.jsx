@@ -2,6 +2,7 @@
 import '../styles/App.css';
 import CocktailCollection from './CocktailCollection';
 import Header from './Header';
+import UserCollection from './UserCollection';
 
 
 const CocktailNFTS = () => {
@@ -10,6 +11,7 @@ const CocktailNFTS = () => {
     <div className='container'>
     <Header/>
     <CocktailCollection/>
+    <UserCollection />
     </div>
   
   );
