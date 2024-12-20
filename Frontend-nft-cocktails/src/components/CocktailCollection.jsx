@@ -1,9 +1,9 @@
 //src/components/CocktailCollection.jsx
 import React, { useEffect, useState } from 'react'
-import { fetchAllCocktailMetadata } from '../services/nftService'
+import { fetchAllCocktailMetadata } from '../services/nftService';
 import { useWallet } from '../hooks/useWallet';
 import '../styles/CocktailCollection.css';
-import {mintCocktail, mintedNfts} from '../utilities/ContractConfig';
+import {mintCocktail, mintedNfts} from '../services/ContractCallService';
 
 
 const CocktailCollection = () => {
@@ -82,7 +82,7 @@ const CocktailCollection = () => {
       <div className="cocktail-collection">
         <h2 className="cocktail-title">Limited cocktail nfts for minting</h2>
         {/* Smart contract numbers are returned as objects in ethers.js, need toString to convert for reading purposes in react */}
-        <p className="total-minted">Total Minted:{totalMinted.toString()}</p>
+        <p className="total-minted">Total Minted:{totalMinted.toString()} out of 10.000</p>
         <div className="cocktail-grid">
           {cocktails.map((cocktail, index) => (
             <div
