@@ -13,7 +13,7 @@ export const connectWallet = async () => {
   if (window.ethereum) {
     try {
       // Request account access
-      const [account] = await window.ethereum.request({
+      const accounts = await window.ethereum.request({
         method: 'eth_requestAccounts',
       });
 
@@ -25,7 +25,7 @@ export const connectWallet = async () => {
       const contractWithSigner = contract.connect(signer); 
   
       return {
-        address: account[0],
+        address: accounts[0],
         contract: contractWithSigner,
       };
     } catch (error) {
