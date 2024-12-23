@@ -10,6 +10,11 @@ const UserCollection = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const getOpenSeaView = (openseaUrl) => {
+       window.open(openseaUrl);
+       return;
+    };
+
     useEffect(() => {
         const loadUserNFTS = async () => {
             if (!contract || !walletAddress) {
@@ -21,7 +26,6 @@ const UserCollection = () => {
         try {
             setLoading(true);
             const userCollectionNfts = await fetchUserNfts(contract, walletAddress);
-            console.log("inside userCollection", userCollectionNfts);
             setUserNFTS(userCollectionNfts);
         } catch (error) {
             console.error("Error loading user NFTs:", error);
@@ -58,7 +62,7 @@ const UserCollection = () => {
       <div className="user-collection">
         <h2 className="user-collection-header">Your User Collection</h2>
         {userNFTS.length === 0 ? (
-          <p>
+          <p className="collection-empty">
             You haven't minted any cocktail NFTs yet. Start your collection by
             minting!
           </p>
@@ -76,9 +80,10 @@ const UserCollection = () => {
                 />
                 <div className="nft-info">
                   <h3>{nft.name}</h3>
-                  <p>{nft.description}</p>
                   <p className="token-id">Token ID: {nft.tokenId.toString()}</p>
-                  <button>view on opensea</button>
+                  <button onClick={() => getOpenSeaView(nft.openseaUrl)}>
+                    view on opensea
+                  </button>
                 </div>
               </div>
             ))}
