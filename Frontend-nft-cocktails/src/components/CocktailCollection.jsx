@@ -82,7 +82,7 @@ const CocktailCollection = () => {
       <div className="cocktail-collection">
         <h2 className="cocktail-title">Limited cocktail nfts for minting</h2>
         {/* Smart contract numbers are returned as objects in ethers.js, need toString to convert for reading purposes in react */}
-        <p className="total-minted">Total Minted:{totalMinted.toString()} out of 10.000</p>
+        <span className="total-minted">Total Minted:{totalMinted.toString()} out of 10.000</span>
         <div className="cocktail-grid">
           {cocktails.map((cocktail, index) => (
             <div
