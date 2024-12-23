@@ -3,7 +3,7 @@ import '../styles/Header.css';
 import { useWallet } from '../hooks/useWallet';
 
 const Header = () => {
-const {walletAddress, isConnecting, handleConnectWallet } = useWallet();
+const {walletAddress, isConnecting, handleLogOut, handleConnectWallet } = useWallet();
 
   return (
     <div className="header">
@@ -25,10 +25,18 @@ const {walletAddress, isConnecting, handleConnectWallet } = useWallet();
             {isConnecting ? 'Connecting...' : 'Connect Wallet'}
           </button>
         ) : (
-          <p className="walletAddress">
-            Connected:{' '}
-            {`${walletAddress.substring(0, 6)}...${walletAddress.slice(-4)}`}
-          </p>
+          <div className="connected-status">
+            <p className="walletAddress">
+              Connected:{' '}
+              {`${walletAddress.substring(0, 6)}...${walletAddress.slice(-4)}`}
+            </p>
+            <button
+              className="logout-button"
+              onClick={handleLogOut}
+            >
+              Logout
+            </button>
+          </div>
         )}
       </div>
     </div>
