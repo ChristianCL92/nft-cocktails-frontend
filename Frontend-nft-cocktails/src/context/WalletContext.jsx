@@ -47,10 +47,16 @@ export const WalletProvider = ({ children }) => {
     }
   };
 
+  const handleLogOut = async() => {
+    setWalletAddress("");
+    setContract(null);
+  }
+
   const value = {
     walletAddress,
     contract,
     isConnecting,
+    handleLogOut,
     handleConnectWallet,
   };
 
