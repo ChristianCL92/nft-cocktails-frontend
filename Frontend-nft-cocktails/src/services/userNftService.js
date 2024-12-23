@@ -1,5 +1,9 @@
 import { fetchCocktailMetadata } from "./nftService";
 
+export const getOpenSeaUrl = (tokenId, contractAddress) => {
+    return `https://testnets.opensea.io/assets/sepolia/${contractAddress}/${tokenId}`;
+};
+
 export const fetchUserNfts = async (contract, userAddress) => {
     if (!contract || !userAddress) {
         throw new Error("No contract or userAddress in userNftService module");
@@ -14,10 +18,14 @@ export const fetchUserNfts = async (contract, userAddress) => {
             const {tokenIds, cocktail} = event.args;
 
         const metadata = await fetchCocktailMetadata(cocktail);
+        
+        //contract.target retreives the first argument when initializing the ethers.Contract
+        const contractAddress = contract.target;
 
         return {
             tokenId: tokenIds,
             cocktailName: cocktail,
+            openseaUrl:getOpenSeaUrl(tokenIds, contractAddress),
             ...metadata
         }
       
