@@ -9,6 +9,17 @@ src/styles/CocktailCollection.css
 
 }
 
+.cocktail-title {
+    text-align: center;
+    color: white;
+}
+
+.total-minted {
+    color: white;
+    font-weight: bold;
+    
+}
+
 .cocktail-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

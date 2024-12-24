@@ -1,15 +1,24 @@
 /* 
 src/styles/App.css
 */
+@import 'Fonts.css';
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-   background:linear-gradient(to left top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
-  
+background: linear-gradient(to right bottom, #35b9fa, #009fff, #0080ff, #005aff, #1913ff);}
+
+button {
+  background-color: rgba(17, 217, 47, 0.655);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 6px;
 }
 
-.container {
-  height: 100vh;
-}
+button:hover {
+    background-color: rgba(7, 249, 43, 0.989);
 
+}

@@ -15,6 +15,12 @@ src/styles/Header.css
     font-size: 1.9rem;
 }
 
+.wallet-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .walletButton {
   background-color: rgb(108, 216, 108);
   border: none;
@@ -29,6 +35,10 @@ src/styles/Header.css
   background-color: rgb(76, 175, 76);
 }
 
+.connected-status {
+  display: flex;
+}
+
 .walletAddress {
     margin: 1rem;
     background-color: rgb(63, 192, 51);
@@ -38,8 +48,13 @@ src/styles/Header.css
     color: white;
 }
 
-.wallet-section {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.logout-button {
+  background-color: rgb(158, 52, 52);
+  margin: 5px 7px;
 }
+
+.logout-button:hover {
+  background-color: rgb(230, 37, 37);
+
+}
+

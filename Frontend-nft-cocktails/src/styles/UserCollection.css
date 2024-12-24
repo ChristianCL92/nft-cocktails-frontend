@@ -5,8 +5,14 @@
 }
 
 .user-collection-header{
+    color: white;
     text-align: center;
-    font-size: xx-large;
+    font-weight: bold;
+}
+
+.collection-empty {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.514);
 }
 
 .user-nft-grid {
@@ -31,10 +37,15 @@
     transform: translateY(-5px);
 }
 
-.nft-image {
-    width: 100%;
+.user-nft-card img {
+    width: 280px;
     height: 280px;
     object-fit: cover;
+    border-radius: 8px;
+}
+
+.user-nft-card h3 {
+    color: white;
 }
 
 .nft-info {
@@ -42,7 +53,8 @@
 }
 
 .token-id {
-    color: #666;
+    color: #35e52f;
     font-size: 0.9rem;
+    font-weight: 600;
     margin-top: 0.5rem;
 }
