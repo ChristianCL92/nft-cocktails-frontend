@@ -55,4 +55,11 @@ Ensure you have installed:
 - View your minted NFTs in "Your User Collection"
 - Click "View on OpenSea" to see your NFT on OpenSea
 
+## Running the Application
+
+Start the development server:
+
+- npm run dev.
+
+
 
