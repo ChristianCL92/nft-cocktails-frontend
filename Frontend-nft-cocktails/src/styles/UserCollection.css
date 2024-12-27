@@ -1,3 +1,7 @@
+.user-collection-message {
+  color: rgba(255, 255, 255, 0.514);
+
+}
 .user-collection {
   padding: 2rem;
   max-width: 1200px;

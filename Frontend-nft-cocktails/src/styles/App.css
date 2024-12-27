@@ -7,7 +7,16 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-background: linear-gradient(to right bottom, #35b9fa, #009fff, #0080ff, #005aff, #1913ff);}
+background: linear-gradient(to right bottom, #35b9fa, #009fff, #0080ff, #005aff, #1913ff);
+}
+
+.disclaimer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  color: #f1f0f0;
+  font-size: 0.9rem;
+}
 
 button {
   background-color: rgba(17, 217, 47, 0.655);
