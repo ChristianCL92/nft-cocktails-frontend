@@ -13,7 +13,7 @@ const AVAILABLE_COCKTAIL_NFTS = [
     "TEQUILASUNRISE",
     "TOMCOLLINS"
 ];
-// Better code organisation to spread out the fetch in two functions because it provides a clear error handling per cocktail
+
 export const fetchCocktailMetadata = async (cocktailName) => { 
     try {
         const response = await fetch(`${GITHUB_BASE_URL}${cocktailName}.json`);

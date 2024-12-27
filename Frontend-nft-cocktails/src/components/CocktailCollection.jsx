@@ -7,14 +7,11 @@ import {mintCocktail, mintedNfts} from '../services/ContractCallService';
 
 
 const CocktailCollection = () => {
-  const { contract, walletAddress } = useWallet();
-
-
+    const { contract, walletAddress } = useWallet();
+    
     const [cocktails, setCocktails] = useState([]);
-    //important for managing slow network requests, shows loading for better user experience
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    //Track minting status for each cocktail. So when {"MOJITO": true} means MOJITO is being minted
     const [minting, setMinting] = useState({});
     const [totalMinted, setTotalMinted] = useState(0);
 
@@ -49,7 +46,6 @@ const CocktailCollection = () => {
         }
 
         try{
-            //Prevents double-minting attempts: 1) (button disabled while minting), 2) show minting state in UI
             setMinting(prev => ({...prev,[cocktailName]: true}));
 
             const tx = await mintCocktail(contract, cocktailName);
@@ -81,7 +77,6 @@ const CocktailCollection = () => {
     <>
       <div className="cocktail-collection">
         <h2 className="cocktail-title">Limited cocktail nfts for minting</h2>
-        {/* Smart contract numbers are returned as objects in ethers.js, need toString to convert for reading purposes in react */}
         <span className="total-minted">Total Minted:{totalMinted.toString()} out of 10.000</span>
         <div className="cocktail-grid">
           {cocktails.map((cocktail, index) => (

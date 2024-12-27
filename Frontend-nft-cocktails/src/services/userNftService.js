@@ -14,12 +14,10 @@ export const fetchUserNfts = async (contract, userAddress) => {
         const events = await contract.queryFilter(filter);
 
         const nftPromises = events.map(async (event) => {
-            //extracting the parameters from the event (Minted) address in contract. 
-            const {tokenIds, cocktail} = event.args;
+        const {tokenIds, cocktail} = event.args;
 
         const metadata = await fetchCocktailMetadata(cocktail);
         
-        //contract.target retreives the first argument when initializing the ethers.Contract
         const contractAddress = contract.target;
 
         return {
