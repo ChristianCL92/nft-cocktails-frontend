@@ -77,7 +77,9 @@ const CocktailCollection = () => {
     <>
       <div className="cocktail-collection">
         <h2 className="cocktail-title">Limited cocktail nfts for minting</h2>
-        <span className="total-minted">Total Minted:{totalMinted.toString()} out of 10.000</span>
+        <span className="total-minted">
+          Total Minted:{totalMinted.toString()} out of 10.000
+        </span>
         <div className="cocktail-grid">
           {cocktails.map((cocktail, index) => (
             <div
@@ -95,7 +97,14 @@ const CocktailCollection = () => {
                   minting[cocktail.name] ? 'minting' : ''
                 }`}
                 onClick={() =>
-                handleMint(cocktail.name.toUpperCase().replace(/\s+/g, ''))}
+                  handleMint(
+                    cocktail.name
+                      .toUpperCase()
+                      .replace(/\s+/g, '')
+                      .normalize('NFD')
+                      .replace(/[\u0300-\u036f]/g, '')
+                  )
+                }
                 disabled={!walletAddress || minting[cocktail.name]}
               >
                 {minting[cocktail.name] ? 'Minting...' : 'Mint NFT'}
